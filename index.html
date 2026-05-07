@@ -1,282 +1,331 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucel Power Design</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lucel Power Design — Slides que não parecem feitos por IA</title>
+<meta name="description" content="Gerador de slides profissionais com Brand DNA × 20 princípios de design. Por Lucel Digital.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #0a0a0a;
-    --surface: #141414;
-    --border: #222222;
-    --text: #f0f0f0;
-    --muted: #888888;
-    --accent: #d4a96a;
-  }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+  :root{--ink:#0b0b0c;--ink-2:#2b2b2f;--muted:#6b6b72;--rule:#e7e5df;--paper:#f6f4ee;--paper-2:#efece4;--card:#ffffff;--accent:#d4a96a;--max:1200px;}
+  *{box-sizing:border-box}html,body{margin:0;padding:0}html{scroll-behavior:smooth}
+  body{font-family:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.55;}
+  a{color:inherit}.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+  .mono{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.02em}
 
-  header {
-    padding: 24px 48px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo { display: flex; align-items: center; gap: 12px; }
-  .logo-mark { width: 32px; height: 32px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #000; }
-  .logo-text { font-size: 16px; font-weight: 600; }
-  .logo-sub { font-size: 12px; color: var(--muted); }
-  .header-tag { font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+  .nav{position:sticky;top:0;z-index:20;background:rgba(246,244,238,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand-wrap{display:flex;align-items:center;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+  .brand-by{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none}
+  .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);display:inline-block}
+  .nav a.link{color:var(--ink-2);text-decoration:none;font-size:14px;margin-left:24px;font-weight:500}
+  .nav a.link:hover{color:var(--ink)}
+  .nav a.cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:9px 14px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;margin-left:24px}
+  .nav a.cta:hover{background:var(--accent);color:#000}
 
-  main { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
+  .hero{padding:96px 0 64px;border-bottom:1px solid var(--rule)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;margin-bottom:24px}
+  .eyebrow .dot{width:6px;height:6px}
+  h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(48px,7vw,96px);line-height:1.02;letter-spacing:-.025em;margin:0 0 24px;max-width:14ch;}
+  h1 .accent{color:var(--accent);font-style:italic}
+  .lead{font-size:clamp(18px,1.5vw,21px);color:var(--ink-2);max-width:62ch;margin:0 0 32px}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:14px;border:1px solid transparent}
+  .btn-primary{background:var(--ink);color:#fff}.btn-primary:hover{background:var(--accent);color:#000}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}.btn-ghost:hover{background:var(--ink);color:#fff}
 
-  .hero { text-align: center; margin-bottom: 64px; }
-  .hero-label { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
-  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 56px; font-weight: 400; line-height: 1.1; margin-bottom: 16px; }
-  .hero p { font-size: 18px; color: var(--muted); max-width: 480px; margin: 0 auto; line-height: 1.6; }
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:40px 0;border-bottom:1px solid var(--rule)}
+  .meta div .k{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em}
+  .meta div .v{font-family:'Fraunces',serif;font-weight:600;font-size:24px;letter-spacing:-.01em;margin-top:6px}
+  @media(max-width:780px){.meta{grid-template-columns:repeat(2,1fr)}}
 
-  .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 40px; margin-bottom: 32px; }
+  section{padding:96px 0}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;margin-bottom:48px;border-bottom:1px solid var(--rule);padding-bottom:32px}
+  .section-head h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;max-width:18ch;}
+  .section-head p{color:var(--muted);max-width:42ch;margin:0;font-size:15px}
 
-  .form-group { margin-bottom: 28px; }
-  label { display: block; font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 10px; letter-spacing: 0.5px; text-transform: uppercase; }
-  input, textarea {
-    width: 100%;
-    padding: 14px 16px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    outline: none;
-    transition: border-color .2s;
-  }
-  input:focus, textarea:focus { border-color: var(--accent); }
-  textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
-  input::placeholder, textarea::placeholder { color: #444; }
+  /* GERADOR */
+  .gerador{background:var(--card);border:1px solid var(--rule);border-radius:20px;padding:48px;margin-bottom:48px}
+  .fg{margin-bottom:24px}
+  .fg label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px}
+  .fg input,.fg textarea{width:100%;padding:14px 16px;border:1px solid var(--rule);border-radius:12px;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;font-size:15px;outline:none;transition:border-color .2s}
+  .fg input:focus,.fg textarea:focus{border-color:var(--accent)}
+  .fg textarea{min-height:100px;resize:vertical;line-height:1.6}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;max-height:220px;overflow-y:auto;padding:4px}
+  .pill{padding:7px 14px;border-radius:999px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;transition:all .15s;font-weight:500}
+  .pill:hover{border-color:var(--accent);color:var(--ink)}
+  .pill.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .gen-btn{width:100%;padding:16px;background:var(--ink);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;margin-top:8px}
+  .gen-btn:hover{background:var(--accent);color:#000}
+  .gen-btn:disabled{opacity:.4;cursor:not-allowed}
+  .status{text-align:center;font-size:14px;color:var(--muted);margin-top:12px;min-height:20px}
+  .preview{margin-top:32px;display:none}
+  .preview-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .preview-hd span{font-family:'Fraunces',serif;font-size:18px;font-weight:600}
+  .dl-btn{padding:10px 20px;background:var(--ink);color:#fff;border:none;border-radius:999px;font-size:13px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s}
+  .dl-btn:hover{background:var(--accent);color:#000}
+  iframe{width:100%;height:480px;border:1px solid var(--rule);border-radius:14px;display:block}
 
-  .brands-section { margin-bottom: 28px; }
-  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-top: 10px; max-height: 280px; overflow-y: auto; padding-right: 4px; }
-  .brands-grid::-webkit-scrollbar { width: 4px; }
-  .brands-grid::-webkit-scrollbar-track { background: transparent; }
-  .brands-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  /* REGRAS */
+  .rules{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  @media(max-width:1080px){.rules{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:780px){.rules{grid-template-columns:repeat(2,1fr)}}
+  .rule{background:var(--card);border:1px solid var(--rule);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s,border-color .25s}
+  .rule:hover{transform:translateY(-2px);box-shadow:0 12px 28px -16px rgba(0,0,0,.18);border-color:#d8d4ca}
+  .rule-body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .rule-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.14em}
+  .rule-title{font-family:'Fraunces',serif;font-weight:600;font-size:20px;line-height:1.2;letter-spacing:-.01em;margin:0}
+  .rule-desc{font-size:14px;color:var(--ink-2);margin:0;line-height:1.5}
+  .rule-src{margin-top:auto;padding-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.04em;border-top:1px dashed var(--rule)}
 
-  .brand-btn {
-    padding: 10px 8px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: var(--bg);
-    color: var(--muted);
-    font-size: 13px;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: all .15s;
-    text-align: center;
-    font-weight: 500;
-  }
-  .brand-btn:hover { border-color: var(--accent); color: var(--text); }
-  .brand-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+  /* COMO FUNCIONA */
+  .how ol{counter-reset:step;list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:20px}
+  .how li{counter-increment:step;display:grid;grid-template-columns:48px 1fr;gap:20px;padding:20px;border:1px solid var(--rule);border-radius:14px;background:var(--card)}
+  .how li::before{content:counter(step,decimal-leading-zero);font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);font-weight:600;align-self:start;border-right:1px solid var(--rule);padding-right:16px;}
+  .how li h4{margin:0 0 4px;font-family:'Fraunces',serif;font-size:18px;font-weight:600;letter-spacing:-.01em}
+  .how li p{margin:0;color:var(--ink-2);font-size:14px}
 
-  .generate-btn {
-    width: 100%;
-    padding: 16px;
-    background: var(--accent);
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: opacity .2s;
-    letter-spacing: 0.3px;
-  }
-  .generate-btn:hover { opacity: 0.88; }
-  .generate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  /* MARCAS */
+  .brand-cats{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+  @media(max-width:900px){.brand-cats{grid-template-columns:repeat(2,1fr)}}
+  .cat{border:1px solid var(--rule);border-radius:14px;padding:20px;background:var(--card)}
+  .cat h5{margin:0 0 10px;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+  .cat ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .cat li{font-size:13px;color:var(--ink-2);background:var(--paper-2);padding:4px 10px;border-radius:999px}
 
-  .status { text-align: center; font-size: 14px; color: var(--muted); margin-top: 12px; min-height: 20px; }
-
-  .result-section { display: none; }
-  .result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-  .result-header h3 { font-size: 15px; font-weight: 500; }
-  .dl-btn {
-    padding: 10px 20px;
-    background: var(--accent);
-    color: #000;
-    border: none;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: opacity .2s;
-  }
-  .dl-btn:hover { opacity: 0.88; }
-
-  .preview-frame {
-    width: 100%;
-    height: 500px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  iframe { width: 100%; height: 100%; border: none; display: block; }
-
-  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); margin-top: 64px; }
-  footer a { color: var(--accent); text-decoration: none; }
+  footer{border-top:1px solid var(--rule);padding:48px 0 64px;margin-top:48px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot p{margin:0;color:var(--muted);font-size:13px}
+  .foot a{color:var(--ink-2);text-decoration:none;font-weight:500;font-size:14px;margin-left:24px}
+  .foot a:hover{color:var(--accent)}
+  ::selection{background:var(--accent);color:#fff}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <div class="logo-mark">L</div>
-    <div>
-      <div class="logo-text">Lucel Power Design</div>
-      <div class="logo-sub">Gerador de slides profissionais</div>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-wrap">
+      <a href="#" class="brand"><span class="dot"></span> Lucel Power Design</a>
+      <a href="https://wa.me/5511939435370" class="brand-by" target="_blank">Lucel Digital</a>
     </div>
+    <nav>
+      <a class="link" href="#gerar">Gerar slides</a>
+      <a class="link" href="#principios">Princípios</a>
+      <a class="link" href="#marcas">Marcas</a>
+      <a class="cta" href="https://wa.me/5511939435370" target="_blank">Falar com a Lucel →</a>
+    </nav>
   </div>
-  <div class="header-tag">by Lucel Digital</div>
 </header>
 
-<main>
-  <div class="hero">
-    <div class="hero-label">Slides com IA</div>
-    <h1>Apresentações que<br>não parecem IA</h1>
-    <p>Escolha uma marca de referência, informe o tema e receba slides profissionais prontos para usar.</p>
-  </div>
-
-  <div class="form-card">
-    <div class="form-group">
-      <label>Tema da apresentação</label>
-      <input type="text" id="tema" placeholder="Ex: Serviço de clips automáticos para YouTube" />
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> Lucel Digital · Power Design</div>
+    <h1>Slides que não parecem feitos por <span class="accent">IA</span>.</h1>
+    <p class="lead">Brand DNA × 20 princípios de design codificados → apresentações profissionais, sob demanda. Sem gradientes roxos. Sem seis bullets. Sem sombras em barras.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#gerar">Gerar apresentação ↓</a>
+      <a class="btn btn-ghost" href="#principios">Ver os 20 princípios →</a>
     </div>
+  </div>
+</section>
 
-    <div class="brands-section">
-      <label>Estilo de marca</label>
-      <div class="brands-grid" id="brands">
-        <button class="brand-btn active" data-brand="Stripe">Stripe</button>
-        <button class="brand-btn" data-brand="Apple">Apple</button>
-        <button class="brand-btn" data-brand="Linear">Linear</button>
-        <button class="brand-btn" data-brand="Notion">Notion</button>
-        <button class="brand-btn" data-brand="Vercel">Vercel</button>
-        <button class="brand-btn" data-brand="Spotify">Spotify</button>
-        <button class="brand-btn" data-brand="Tesla">Tesla</button>
-        <button class="brand-btn" data-brand="Airbnb">Airbnb</button>
-        <button class="brand-btn" data-brand="Anthropic">Anthropic</button>
-        <button class="brand-btn" data-brand="OpenAI">OpenAI</button>
-        <button class="brand-btn" data-brand="GitHub">GitHub</button>
-        <button class="brand-btn" data-brand="Figma">Figma</button>
-        <button class="brand-btn" data-brand="Slack">Slack</button>
-        <button class="brand-btn" data-brand="Uber">Uber</button>
-        <button class="brand-btn" data-brand="Netflix">Netflix</button>
-        <button class="brand-btn" data-brand="Nike">Nike</button>
-        <button class="brand-btn" data-brand="BMW">BMW</button>
-        <button class="brand-btn" data-brand="Ferrari">Ferrari</button>
-        <button class="brand-btn" data-brand="Shopify">Shopify</button>
-        <button class="brand-btn" data-brand="Coinbase">Coinbase</button>
-        <button class="brand-btn" data-brand="Binance">Binance</button>
-        <button class="brand-btn" data-brand="Revolut">Revolut</button>
-        <button class="brand-btn" data-brand="Wise">Wise</button>
-        <button class="brand-btn" data-brand="Wired">Wired</button>
-        <button class="brand-btn" data-brand="IBM">IBM</button>
-        <button class="brand-btn" data-brand="NVIDIA">NVIDIA</button>
-        <button class="brand-btn" data-brand="SpaceX">SpaceX</button>
-        <button class="brand-btn" data-brand="Mastercard">Mastercard</button>
-        <button class="brand-btn" data-brand="Intercom">Intercom</button>
-        <button class="brand-btn" data-brand="Miro">Miro</button>
-        <button class="brand-btn" data-brand="Zapier">Zapier</button>
-        <button class="brand-btn" data-brand="Supabase">Supabase</button>
-        <button class="brand-btn" data-brand="Framer">Framer</button>
-        <button class="brand-btn" data-brand="Webflow">Webflow</button>
-        <button class="brand-btn" data-brand="Raycast">Raycast</button>
-        <button class="brand-btn" data-brand="Cursor">Cursor</button>
-        <button class="brand-btn" data-brand="Starbucks">Starbucks</button>
-        <button class="brand-btn" data-brand="BMW M">BMW M</button>
-        <button class="brand-btn" data-brand="Bugatti">Bugatti</button>
-        <button class="brand-btn" data-brand="Lamborghini">Lamborghini</button>
-        <button class="brand-btn" data-brand="PlayStation">PlayStation</button>
-        <button class="brand-btn" data-brand="Sony">Sony</button>
-        <button class="brand-btn" data-brand="Renault">Renault</button>
+<div class="wrap">
+  <div class="meta">
+    <div><div class="k">Princípios</div><div class="v">20</div></div>
+    <div><div class="k">Sistemas de marca</div><div class="v">40+</div></div>
+    <div><div class="k">Fontes citadas</div><div class="v">10+</div></div>
+    <div><div class="k">Acesso</div><div class="v">Grátis</div></div>
+  </div>
+</div>
+
+<!-- GERADOR -->
+<section id="gerar" style="background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Gere sua apresentação agora.</h2>
+      <p>Preencha o tema, escolha a marca e receba slides profissionais prontos para usar.</p>
+    </div>
+    <div class="gerador">
+      <div class="fg">
+        <label>Tema da apresentação</label>
+        <input type="text" id="tema" placeholder="Ex: Serviço de clips automáticos para YouTube" />
+      </div>
+      <div class="fg">
+        <label>Estilo de marca</label>
+        <div class="pills" id="pills">
+          <button class="pill active" data-b="Stripe">Stripe</button>
+          <button class="pill" data-b="Apple">Apple</button>
+          <button class="pill" data-b="Linear">Linear</button>
+          <button class="pill" data-b="Notion">Notion</button>
+          <button class="pill" data-b="Vercel">Vercel</button>
+          <button class="pill" data-b="Spotify">Spotify</button>
+          <button class="pill" data-b="Tesla">Tesla</button>
+          <button class="pill" data-b="Airbnb">Airbnb</button>
+          <button class="pill" data-b="Anthropic">Anthropic</button>
+          <button class="pill" data-b="OpenAI">OpenAI</button>
+          <button class="pill" data-b="GitHub">GitHub</button>
+          <button class="pill" data-b="Figma">Figma</button>
+          <button class="pill" data-b="Slack">Slack</button>
+          <button class="pill" data-b="Uber">Uber</button>
+          <button class="pill" data-b="Netflix">Netflix</button>
+          <button class="pill" data-b="Nike">Nike</button>
+          <button class="pill" data-b="BMW">BMW</button>
+          <button class="pill" data-b="Ferrari">Ferrari</button>
+          <button class="pill" data-b="Shopify">Shopify</button>
+          <button class="pill" data-b="Coinbase">Coinbase</button>
+          <button class="pill" data-b="Binance">Binance</button>
+          <button class="pill" data-b="Revolut">Revolut</button>
+          <button class="pill" data-b="Wise">Wise</button>
+          <button class="pill" data-b="IBM">IBM</button>
+          <button class="pill" data-b="NVIDIA">NVIDIA</button>
+          <button class="pill" data-b="SpaceX">SpaceX</button>
+          <button class="pill" data-b="Mastercard">Mastercard</button>
+          <button class="pill" data-b="Supabase">Supabase</button>
+          <button class="pill" data-b="Framer">Framer</button>
+          <button class="pill" data-b="Webflow">Webflow</button>
+          <button class="pill" data-b="Raycast">Raycast</button>
+          <button class="pill" data-b="Cursor">Cursor</button>
+          <button class="pill" data-b="Starbucks">Starbucks</button>
+          <button class="pill" data-b="Miro">Miro</button>
+          <button class="pill" data-b="Zapier">Zapier</button>
+          <button class="pill" data-b="Intercom">Intercom</button>
+          <button class="pill" data-b="PlayStation">PlayStation</button>
+          <button class="pill" data-b="Sony">Sony</button>
+          <button class="pill" data-b="Lamborghini">Lamborghini</button>
+          <button class="pill" data-b="Bugatti">Bugatti</button>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Pontos principais <span style="font-size:11px;text-transform:none;letter-spacing:0">(um por linha)</span></label>
+        <textarea id="pontos" placeholder="O que é o serviço&#10;Como funciona&#10;Resultados esperados&#10;Investimento&#10;Próximos passos"></textarea>
+      </div>
+      <button class="gen-btn" id="gen-btn" onclick="gerar()">Gerar apresentação</button>
+      <p class="status" id="status"></p>
+      <div class="preview" id="preview-wrap">
+        <div class="preview-hd">
+          <span>Prévia dos slides</span>
+          <button class="dl-btn" onclick="baixar()">⬇ Baixar HTML</button>
+        </div>
+        <iframe id="preview"></iframe>
       </div>
     </div>
-
-    <div class="form-group">
-      <label>Pontos principais <span style="font-size:11px;color:#555;text-transform:none;">(um por linha)</span></label>
-      <textarea id="pontos" placeholder="O que é o serviço&#10;Como funciona&#10;Resultados esperados&#10;Investimento&#10;Próximos passos"></textarea>
-    </div>
-
-    <button class="generate-btn" id="gerar" onclick="gerar()">Gerar apresentação</button>
-    <p class="status" id="status"></p>
   </div>
+</section>
 
-  <div class="result-section" id="resultado">
-    <div class="result-header">
-      <h3>Prévia da apresentação</h3>
-      <button class="dl-btn" onclick="baixar()">⬇ Baixar HTML</button>
+<!-- 20 REGRAS -->
+<section id="principios">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>As 20 regras de design.</h2>
+      <p>Cada slide passa pelos mesmos 20 critérios — tirados de Tufte, Reynolds, Duarte, Williams, Refactoring UI, Müller-Brockmann, Mayer e WCAG 2.2.</p>
     </div>
-    <div class="preview-frame">
-      <iframe id="preview"></iframe>
+    <div class="rules" id="rule-grid"></div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section style="background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Como funciona.</h2>
+      <p>Em três passos você gera uma apresentação profissional pronta para apresentar ou baixar.</p>
+    </div>
+    <div class="how">
+      <ol>
+        <li><div><h4>Escolha o tema</h4><p>Digite sobre o que é a apresentação — um produto, serviço, proposta ou ideia.</p></div></li>
+        <li><div><h4>Escolha a marca</h4><p>Selecione uma das 40+ marcas. As cores, fontes e estilo são aplicados automaticamente.</p></div></li>
+        <li><div><h4>Receba os slides</h4><p>Gerados com os 20 princípios de design. Baixe o HTML e abra no browser — pronto.</p></div></li>
+      </ol>
     </div>
   </div>
-</main>
+</section>
+
+<!-- MARCAS -->
+<section id="marcas">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>40+ sistemas de marca.</h2>
+      <p>Cores, tipografia e estilo de cada marca aplicados automaticamente nos seus slides.</p>
+    </div>
+    <div class="brand-cats">
+      <div class="cat"><h5>Tech / IA</h5><ul><li>Anthropic</li><li>OpenAI</li><li>Linear</li><li>Vercel</li><li>GitHub</li><li>Figma</li><li>Cursor</li><li>Supabase</li><li>Framer</li><li>Webflow</li><li>Raycast</li></ul></div>
+      <div class="cat"><h5>Finanças</h5><ul><li>Stripe</li><li>Mastercard</li><li>Coinbase</li><li>Binance</li><li>Revolut</li><li>Wise</li><li>Shopify</li></ul></div>
+      <div class="cat"><h5>Auto / Estilo</h5><ul><li>Tesla</li><li>BMW</li><li>Ferrari</li><li>Lamborghini</li><li>Bugatti</li><li>Nike</li><li>Airbnb</li><li>Apple</li><li>Starbucks</li></ul></div>
+      <div class="cat"><h5>Mídia</h5><ul><li>Spotify</li><li>Netflix</li><li>Sony</li><li>PlayStation</li><li>IBM</li><li>NVIDIA</li><li>SpaceX</li></ul></div>
+      <div class="cat"><h5>Produtividade</h5><ul><li>Notion</li><li>Slack</li><li>Miro</li><li>Intercom</li><li>Zapier</li><li>Uber</li></ul></div>
+    </div>
+  </div>
+</section>
 
 <footer>
-  Lucel Power Design · <a href="https://wa.me/5511939435370">Falar com a Lucel Digital</a>
+  <div class="wrap foot">
+    <p>Lucel Power Design · por <a href="https://wa.me/5511939435370">Lucel Digital</a> · (11) 93943-5370</p>
+    <div>
+      <a href="#gerar">Gerar slides</a>
+      <a href="#principios">Princípios</a>
+      <a href="https://wa.me/5511939435370">WhatsApp</a>
+    </div>
+  </div>
 </footer>
 
 <script>
-let marcaSel = 'Stripe';
-let htmlGerado = '';
+const MARCAS={Stripe:{bg:"#0a2540",accent:"#635bff",text:"#ffffff",muted:"#89b4fa",card:"#0d2d4f"},Apple:{bg:"#000000",accent:"#f5f5f7",text:"#f5f5f7",muted:"#86868b",card:"#1a1a1a"},Linear:{bg:"#0f0f13",accent:"#5e6ad2",text:"#f2f2f2",muted:"#8a8a9b",card:"#1a1a20"},Notion:{bg:"#ffffff",accent:"#000000",text:"#1a1a1a",muted:"#6b7280",card:"#f7f7f5"},Vercel:{bg:"#000000",accent:"#ffffff",text:"#ffffff",muted:"#888888",card:"#111111"},Spotify:{bg:"#121212",accent:"#1db954",text:"#ffffff",muted:"#b3b3b3",card:"#1e1e1e"},Tesla:{bg:"#cc0000",accent:"#ffffff",text:"#ffffff",muted:"#ffcccc",card:"#aa0000"},Airbnb:{bg:"#ffffff",accent:"#ff5a5f",text:"#1a1a1a",muted:"#717171",card:"#f7f7f7"},Anthropic:{bg:"#0f0f0f",accent:"#d4a96a",text:"#f5f0e8",muted:"#a0998a",card:"#1a1a18"},OpenAI:{bg:"#ffffff",accent:"#10a37f",text:"#202123",muted:"#6e6e80",card:"#f7f7f8"},GitHub:{bg:"#0d1117",accent:"#58a6ff",text:"#c9d1d9",muted:"#8b949e",card:"#161b22"},Figma:{bg:"#1e1e1e",accent:"#a259ff",text:"#ffffff",muted:"#b3b3b3",card:"#2c2c2c"},Slack:{bg:"#4a154b",accent:"#ecb22e",text:"#ffffff",muted:"#e8d5e8",card:"#3f0e40"},Uber:{bg:"#000000",accent:"#276ef1",text:"#ffffff",muted:"#8d8d8d",card:"#1a1a1a"},Netflix:{bg:"#141414",accent:"#e50914",text:"#ffffff",muted:"#808080",card:"#1f1f1f"},Nike:{bg:"#111111",accent:"#ffffff",text:"#ffffff",muted:"#999999",card:"#222222"},BMW:{bg:"#1c69d4",accent:"#ffffff",text:"#ffffff",muted:"#b3c9ee",card:"#1558b0"},Ferrari:{bg:"#cc0000",accent:"#f5c518",text:"#ffffff",muted:"#ffaaaa",card:"#aa0000"},Shopify:{bg:"#ffffff",accent:"#008060",text:"#202223",muted:"#6d7175",card:"#f6f6f7"},Coinbase:{bg:"#0052ff",accent:"#ffffff",text:"#ffffff",muted:"#ccd9ff",card:"#0040cc"},Binance:{bg:"#181a20",accent:"#f0b90b",text:"#eaecef",muted:"#848e9c",card:"#1e2026"},Revolut:{bg:"#191c1f",accent:"#7b61ff",text:"#ffffff",muted:"#8c9196",card:"#23272b"},Wise:{bg:"#9fe870",accent:"#163300",text:"#163300",muted:"#2b5900",card:"#b5f285"},IBM:{bg:"#000000",accent:"#0f62fe",text:"#ffffff",muted:"#8d8d8d",card:"#161616"},NVIDIA:{bg:"#1a1a1a",accent:"#76b900",text:"#ffffff",muted:"#aaaaaa",card:"#252525"},SpaceX:{bg:"#000000",accent:"#005288",text:"#ffffff",muted:"#888888",card:"#0a0a0a"},Mastercard:{bg:"#ffffff",accent:"#eb001b",text:"#231f20",muted:"#666666",card:"#f5f5f5"},Supabase:{bg:"#1c1c1c",accent:"#3ecf8e",text:"#ededed",muted:"#9e9e9e",card:"#2a2a2a"},Framer:{bg:"#0c0c0c",accent:"#0075ff",text:"#ffffff",muted:"#888888",card:"#1a1a1a"},Webflow:{bg:"#146ef5",accent:"#ffffff",text:"#ffffff",muted:"#c0d8fe",card:"#0f5ed4"},Raycast:{bg:"#1a1523",accent:"#ff6363",text:"#ffffff",muted:"#9b8fa6",card:"#231d2e"},Cursor:{bg:"#000000",accent:"#9b59b6",text:"#ffffff",muted:"#888888",card:"#0f0f0f"},Starbucks:{bg:"#00704a",accent:"#cba258",text:"#ffffff",muted:"#d4edda",card:"#005a3c"},Miro:{bg:"#fff700",accent:"#050038",text:"#050038",muted:"#555500",card:"#ffff33"},Zapier:{bg:"#ffffff",accent:"#ff4a00",text:"#1a1a1a",muted:"#716f75",card:"#fff5f2"},Intercom:{bg:"#ffffff",accent:"#1f8ded",text:"#1a1a1a",muted:"#6b7280",card:"#f5f9ff"},PlayStation:{bg:"#003087",accent:"#00439c",text:"#ffffff",muted:"#aabbdd",card:"#002060"},Sony:{bg:"#000000",accent:"#0070d1",text:"#ffffff",muted:"#888888",card:"#111111"},Lamborghini:{bg:"#1a1a1a",accent:"#ffd700",text:"#ffffff",muted:"#aaaaaa",card:"#252525"},Bugatti:{bg:"#1a1a8c",accent:"#c8a951",text:"#ffffff",muted:"#aaaacc",card:"#12127a"}};
 
-document.getElementById('brands').addEventListener('click', e => {
-  if (!e.target.dataset.brand) return;
-  document.querySelectorAll('.brand-btn').forEach(b => b.classList.remove('active'));
+let marcaSel='Stripe',htmlGerado='';
+
+document.getElementById('pills').addEventListener('click',e=>{
+  if(!e.target.dataset.b)return;
+  document.querySelectorAll('.pill').forEach(b=>b.classList.remove('active'));
   e.target.classList.add('active');
-  marcaSel = e.target.dataset.brand;
+  marcaSel=e.target.dataset.b;
 });
 
-async function gerar() {
-  const tema = document.getElementById('tema').value.trim();
-  if (!tema) { document.getElementById('status').textContent = '⚠ Digite o tema da apresentação.'; return; }
+function gerar(){
+  const tema=document.getElementById('tema').value.trim();
+  if(!tema){document.getElementById('status').textContent='⚠ Digite o tema da apresentação.';return;}
+  const pr=document.getElementById('pontos').value.trim();
+  const pontos=pr?pr.split('\n').filter(p=>p.trim()):['Visão geral','Como funciona','Benefícios','Resultados','Próximos passos'];
+  const s=MARCAS[marcaSel]||MARCAS.Stripe;
+  document.getElementById('gen-btn').disabled=true;
+  document.getElementById('status').textContent='Gerando slides...';
+  document.getElementById('preview-wrap').style.display='none';
 
-  const pontosRaw = document.getElementById('pontos').value.trim();
-  const pontos = pontosRaw ? pontosRaw.split('\n').filter(p => p.trim()) : [];
+  const slides=[];
+  slides.push(`<div class="slide active"><div class="inner" style="justify-content:center;align-items:flex-start;padding:96px"><div style="max-width:800px"><div class="lbl">${marcaSel} Style · Lucel Digital</div><h1 style="font-size:clamp(48px,6vw,72px);font-weight:800;line-height:1.05;margin:20px 0 28px;letter-spacing:-2px">${tema}</h1><div style="width:64px;height:4px;background:${s.accent};margin-bottom:28px;border-radius:2px"></div><p style="font-size:20px;color:${s.muted};max-width:500px;line-height:1.6">Apresentação por Lucel Digital</p></div></div></div>`);
 
-  const btn = document.getElementById('gerar');
-  btn.disabled = true;
-  document.getElementById('status').textContent = 'Gerando slides...';
-  document.getElementById('resultado').style.display = 'none';
+  pontos.forEach((ponto,i)=>{
+    const n=String(i+1).padStart(2,'0'),t=String(pontos.length).padStart(2,'0');
+    slides.push(`<div class="slide"><div class="inner" style="justify-content:center;align-items:flex-start;padding:96px"><div style="max-width:900px;width:100%"><div class="lbl">${n} / ${t}</div><h2 style="font-size:clamp(40px,5vw,60px);font-weight:700;line-height:1.1;margin:20px 0 48px;letter-spacing:-1.5px">${ponto}</h2><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px"><div style="padding:20px 24px;background:${s.card};border:1px solid ${s.accent}22;border-radius:10px"><div style="font-size:22px;color:${s.accent};margin-bottom:10px">→</div><div style="font-size:14px;color:${s.muted}">Ponto chave</div></div><div style="padding:20px 24px;background:${s.card};border:1px solid ${s.accent}22;border-radius:10px"><div style="font-size:22px;color:${s.accent};margin-bottom:10px">◆</div><div style="font-size:14px;color:${s.muted}">Detalhe</div></div><div style="padding:20px 24px;background:${s.card};border:1px solid ${s.accent}22;border-radius:10px"><div style="font-size:22px;color:${s.accent};margin-bottom:10px">✓</div><div style="font-size:14px;color:${s.muted}">Resultado</div></div></div></div></div></div>`);
+  });
 
-  try {
-    const resp = await fetch('/gerar', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tema, marca: marcaSel, pontos })
-    });
-    const data = await resp.json();
-    htmlGerado = data.html;
-    document.getElementById('preview').srcdoc = htmlGerado;
-    document.getElementById('resultado').style.display = 'block';
-    document.getElementById('status').textContent = '✓ Apresentação gerada com sucesso!';
-    document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
-  } catch(e) {
-    document.getElementById('status').textContent = 'Erro ao gerar. Tente novamente.';
-  }
+  slides.push(`<div class="slide"><div class="inner" style="justify-content:center;align-items:center;text-align:center;padding:96px"><div><div style="font-size:88px;margin-bottom:28px">→</div><h2 style="font-size:clamp(40px,5vw,60px);font-weight:700;margin-bottom:16px;letter-spacing:-1.5px">Vamos começar?</h2><p style="font-size:20px;color:${s.muted};margin-bottom:48px">${tema}</p><a href="https://wa.me/5511939435370" target="_blank" style="display:inline-block;padding:18px 44px;background:${s.accent};color:${s.bg};border-radius:8px;font-size:17px;font-weight:600;text-decoration:none">Falar com a Lucel Digital →</a></div></div></div>`);
 
-  btn.disabled = false;
+  const total=slides.length;
+  htmlGerado=`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>${tema} — Lucel</title><style>*{box-sizing:border-box;margin:0;padding:0}body{background:${s.bg};color:${s.text};font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif;overflow:hidden;height:100vh}.deck{width:100vw;height:100vh;position:relative}.slide{width:100%;height:100%;position:absolute;top:0;left:0;opacity:0;pointer-events:none;transition:opacity .5s}.slide.active{opacity:1;pointer-events:all}.inner{width:100%;height:100%;display:flex;flex-direction:column}.lbl{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:${s.accent};font-weight:600}.nav{position:fixed;bottom:32px;right:40px;display:flex;gap:12px;align-items:center;z-index:100}.nb{width:46px;height:46px;border-radius:50%;border:1px solid ${s.text}33;background:${s.card};color:${s.text};font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}.nb:hover{background:${s.accent};color:${s.bg}}.counter{font-size:13px;color:${s.muted}}.prog{position:fixed;top:0;left:0;height:2px;background:${s.accent};transition:width .5s;z-index:100}.tag{position:fixed;top:24px;left:40px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:${s.muted}}</style></head><body><div class="prog" id="prog" style="width:${Math.round(1/total*100)}%"></div><div class="tag">Lucel Power Design × ${marcaSel}</div><div class="deck">${slides.join('')}</div><div class="nav"><button class="nb" onclick="ir(-1)">←</button><span class="counter" id="cnt">1 / ${total}</span><button class="nb" onclick="ir(1)">→</button></div><script>let c=0;const sl=document.querySelectorAll('.slide');const t=${total};function ir(d){sl[c].classList.remove('active');c=(c+d+t)%t;sl[c].classList.add('active');document.getElementById('cnt').textContent=(c+1)+' / '+t;document.getElementById('prog').style.width=((c+1)/t*100)+'%';}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')ir(1);if(e.key==='ArrowLeft')ir(-1);});<\/script></body></html>`;
+
+  document.getElementById('preview').srcdoc=htmlGerado;
+  document.getElementById('preview-wrap').style.display='block';
+  document.getElementById('status').textContent='✓ Apresentação gerada!';
+  document.getElementById('gen-btn').disabled=false;
+  document.getElementById('preview-wrap').scrollIntoView({behavior:'smooth'});
 }
 
-function baixar() {
-  if (!htmlGerado) return;
-  const blob = new Blob([htmlGerado], { type: 'text/html' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'lucel-apresentacao.html';
+function baixar(){
+  if(!htmlGerado)return;
+  const blob=new Blob([htmlGerado],{type:'text/html'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='lucel-apresentacao.html';
   a.click();
 }
+
+// 20 regras
+const rules=[["Uma ideia por slide","Título ≤10 palavras + um bloco de suporte. Divida se precisar de um segundo título.","Reynolds · Duarte"],["Legível em ≤3 segundos","O espectador deve extrair a mensagem em ≤3s. Do contrário, simplifique.","Duarte · NN/g"],["≤7±2 blocos visuais; ideal 3–5","Agrupe por proximidade para que o cérebro perceba 3–5 blocos.","Miller 1956 · Cowan 2001"],["Proporção de espaço em branco ≥40%","≥40% da área do slide deve ser vazia. Slides herói: ≥60%.","Refactoring UI · Reynolds"],["Zona de segurança de 5% nas bordas","Nenhum texto ou elemento focal dentro dessa faixa.","Broadcast title-safe"],["Tipografia em escala modular","Escolha uma razão (1.25–1.618). Derive todos os tamanhos dela.","Tschichold · Bringhurst"],["Máximo 4 tamanhos de tipo por slide","Destaque, subtítulo, corpo, legenda — pronto.","Refactoring UI"],["Corpo ≥24px, título ≥48px","Legenda mínima 18px. Qualquer coisa menor é ilegível da fileira 10.","Reynolds · Duarte"],["Entrelinha 1.4–1.6 / 1.05–1.2","Mais espaçado para corpo, mais compacto para títulos grandes.","Butterick · Bringhurst"],["Comprimento de linha ≤60 caracteres","Slides não deveriam ter parágrafos — mas se tiverem, limite o comprimento.","Bringhurst"],["Contraste WCAG ≥4.5:1, ideal 7:1","≥3:1 para texto grande. Objetivo AAA para resistência ao projetor.","WCAG 2.2"],["Distribuição de cor 60-30-10","60% dominante, 30% secundária, 10% destaque. O olho vai para o 10%.","Itten · Refactoring UI"],["Um destaque por slide","Múltiplos destaques = nenhum destaque.","Tufte"],["Nunca codificar significado apenas por cor","Combine cor com forma, rótulo, peso ou ícone.","WCAG 1.4.1"],["Grade de 8pt para todos os espaçamentos","Toda margem e espaçamento = múltiplo de 8.","Bryn Jackson · Material"],["Tudo alinhado a uma grade","12 colunas com 24–32px de calha. Sem deriva óptica.","Müller-Brockmann"],["Proximidade: ≤16px / ≥48px","Itens relacionados ≤16px; itens distintos ≥48px.","Gestalt · Williams"],["Taxa de tinta de dados ≥80%","Elimine todo pixel de gráfico que não seja dado.","Tufte 1983"],["Padrão F: título no topo esquerdo","Os primeiros 200px verticais = zona de atenção primária.","NN/g rastreamento ocular"],["Dois modos válidos — escolha um","Apresentação (esparso) vs documento (denso). Nunca misture.","Tufte vs Reynolds"]];
+document.getElementById('rule-grid').innerHTML=rules.map((r,i)=>`<article class="rule"><div class="rule-body"><div class="rule-num">REGRA ${String(i+1).padStart(2,'0')}</div><h3 class="rule-title">${r[0]}</h3><p class="rule-desc">${r[1]}</p><div class="rule-src">${r[2]}</div></div></article>`).join('');
 </script>
 </body>
 </html>
