@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucel Power Design</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --border: #222222;
+    --text: #f0f0f0;
+    --muted: #888888;
+    --accent: #d4a96a;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+  header {
+    padding: 24px 48px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-mark { width: 32px; height: 32px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #000; }
+  .logo-text { font-size: 16px; font-weight: 600; }
+  .logo-sub { font-size: 12px; color: var(--muted); }
+  .header-tag { font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  main { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
+
+  .hero { text-align: center; margin-bottom: 64px; }
+  .hero-label { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 56px; font-weight: 400; line-height: 1.1; margin-bottom: 16px; }
+  .hero p { font-size: 18px; color: var(--muted); max-width: 480px; margin: 0 auto; line-height: 1.6; }
+
+  .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 40px; margin-bottom: 32px; }
+
+  .form-group { margin-bottom: 28px; }
+  label { display: block; font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  input, textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  input:focus, textarea:focus { border-color: var(--accent); }
+  textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+  input::placeholder, textarea::placeholder { color: #444; }
+
+  .brands-section { margin-bottom: 28px; }
+  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-top: 10px; max-height: 280px; overflow-y: auto; padding-right: 4px; }
+  .brands-grid::-webkit-scrollbar { width: 4px; }
+  .brands-grid::-webkit-scrollbar-track { background: transparent; }
+  .brands-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .brand-btn {
+    padding: 10px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all .15s;
+    text-align: center;
+    font-weight: 500;
+  }
+  .brand-btn:hover { border-color: var(--accent); color: var(--text); }
+  .brand-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+
+  .generate-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: opacity .2s;
+    letter-spacing: 0.3px;
+  }
+  .generate-btn:hover { opacity: 0.88; }
+  .generate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .status { text-align: center; font-size: 14px; color: var(--muted); margin-top: 12px; min-height: 20px; }
+
+  .result-section { display: none; }
+  .result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .result-header h3 { font-size: 15px; font-weight: 500; }
+  .dl-btn {
+    padding: 10px 20px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  .dl-btn:hover { opacity: 0.88; }
+
+  .preview-frame {
+    width: 100%;
+    height: 500px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); margin-top: 64px; }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">L</div>
+    <div>
+      <div class="logo-text">Lucel Power Design</div>
+      <div class="logo-sub">Gerador de slides profissionais</div>
+    </div>
+  </div>
+  <div class="header-tag">by Lucel Digital</div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="hero-label">Slides com IA</div>
+    <h1>Apresentações que<br>não parecem IA</h1>
+    <p>Escolha uma marca de referência, informe o tema e receba slides profissionais prontos para usar.</p>
+  </div>
+
+  <div class="form-card">
+    <div class="form-group">
+      <label>Tema da apresentação</label>
+      <input type="text" id="tema" placeholder="Ex: Serviço de clips automáticos para YouTube" />
+    </div>
+
+    <div class="brands-section">
+      <label>Estilo de marca</label>
+      <div class="brands-grid" id="brands">
+        <button class="brand-btn active" data-brand="Stripe">Stripe</button>
+        <button class="brand-btn" data-brand="Apple">Apple</button>
+        <button class="brand-btn" data-brand="Linear">Linear</button>
+        <button class="brand-btn" data-brand="Notion">Notion</button>
+        <button class="brand-btn" data-brand="Vercel">Vercel</button>
+        <button class="brand-btn" data-brand="Spotify">Spotify</button>
+        <button class="brand-btn" data-brand="Tesla">Tesla</button>
+        <button class="brand-btn" data-brand="Airbnb">Airbnb</button>
+        <button class="brand-btn" data-brand="Anthropic">Anthropic</button>
+        <button class="brand-btn" data-brand="OpenAI">OpenAI</button>
+        <button class="brand-btn" data-brand="GitHub">GitHub</button>
+        <button class="brand-btn" data-brand="Figma">Figma</button>
+        <button class="brand-btn" data-brand="Slack">Slack</button>
+        <button class="brand-btn" data-brand="Uber">Uber</button>
+        <button class="brand-btn" data-brand="Netflix">Netflix</button>
+        <button class="brand-btn" data-brand="Nike">Nike</button>
+        <button class="brand-btn" data-brand="BMW">BMW</button>
+        <button class="brand-btn" data-brand="Ferrari">Ferrari</button>
+        <button class="brand-btn" data-brand="Shopify">Shopify</button>
+        <button class="brand-btn" data-brand="Coinbase">Coinbase</button>
+        <button class="brand-btn" data-brand="Binance">Binance</button>
+        <button class="brand-btn" data-brand="Revolut">Revolut</button>
+        <button class="brand-btn" data-brand="Wise">Wise</button>
+        <button class="brand-btn" data-brand="Wired">Wired</button>
+        <button class="brand-btn" data-brand="IBM">IBM</button>
+        <button class="brand-btn" data-brand="NVIDIA">NVIDIA</button>
+        <button class="brand-btn" data-brand="SpaceX">SpaceX</button>
+        <button class="brand-btn" data-brand="Mastercard">Mastercard</button>
+        <button class="brand-btn" data-brand="Intercom">Intercom</button>
+        <button class="brand-btn" data-brand="Miro">Miro</button>
+        <button class="brand-btn" data-brand="Zapier">Zapier</button>
+        <button class="brand-btn" data-brand="Supabase">Supabase</button>
+        <button class="brand-btn" data-brand="Framer">Framer</button>
+        <button class="brand-btn" data-brand="Webflow">Webflow</button>
+        <button class="brand-btn" data-brand="Raycast">Raycast</button>
+        <button class="brand-btn" data-brand="Cursor">Cursor</button>
+        <button class="brand-btn" data-brand="Starbucks">Starbucks</button>
+        <button class="brand-btn" data-brand="BMW M">BMW M</button>
+        <button class="brand-btn" data-brand="Bugatti">Bugatti</button>
+        <button class="brand-btn" data-brand="Lamborghini">Lamborghini</button>
+        <button class="brand-btn" data-brand="PlayStation">PlayStation</button>
+        <button class="brand-btn" data-brand="Sony">Sony</button>
+        <button class="brand-btn" data-brand="Renault">Renault</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Pontos principais <span style="font-size:11px;color:#555;text-transform:none;">(um por linha)</span></label>
+      <textarea id="pontos" placeholder="O que é o serviço&#10;Como funciona&#10;Resultados esperados&#10;Investimento&#10;Próximos passos"></textarea>
+    </div>
+
+    <button class="generate-btn" id="gerar" onclick="gerar()">Gerar apresentação</button>
+    <p class="status" id="status"></p>
+  </div>
+
+  <div class="result-section" id="resultado">
+    <div class="result-header">
+      <h3>Prévia da apresentação</h3>
+      <button class="dl-btn" onclick="baixar()">⬇ Baixar HTML</button>
+    </div>
+    <div class="preview-frame">
+      <iframe id="preview"></iframe>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Lucel Power Design · <a href="https://wa.me/5511939435370">Falar com a Lucel Digital</a>
+</footer>
+
+<script>
+let marcaSel = 'Stripe';
+let htmlGerado = '';
+
+document.getElementById('brands').addEventListener('click', e => {
+  if (!e.target.dataset.brand) return;
+  document.querySelectorAll('.brand-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  marcaSel = e.target.dataset.brand;
+});
+
+async function gerar() {
+  const tema = document.getElementById('tema').value.trim();
+  if (!tema) { document.getElementById('status').textContent = '⚠ Digite o tema da apresentação.'; return; }
+
+  const pontosRaw = document.getElementById('pontos').value.trim();
+  const pontos = pontosRaw ? pontosRaw.split('\n').filter(p => p.trim()) : [];
+
+  const btn = document.getElementById('gerar');
+  btn.disabled = true;
+  document.getElementById('status').textContent = 'Gerando slides...';
+  document.getElementById('resultado').style.display = 'none';
+
+  try {
+    const resp = await fetch('/gerar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tema, marca: marcaSel, pontos })
+    });
+    const data = await resp.json();
+    htmlGerado = data.html;
+    document.getElementById('preview').srcdoc = htmlGerado;
+    document.getElementById('resultado').style.display = 'block';
+    document.getElementById('status').textContent = '✓ Apresentação gerada com sucesso!';
+    document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
+  } catch(e) {
+    document.getElementById('status').textContent = 'Erro ao gerar. Tente novamente.';
+  }
+
+  btn.disabled = false;
+}
+
+function baixar() {
+  if (!htmlGerado) return;
+  const blob = new Blob([htmlGerado], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'lucel-apresentacao.html';
+  a.click();
+}
+</script>
+</body>
+</html>
